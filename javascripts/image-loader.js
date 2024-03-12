@@ -4,6 +4,19 @@ var imageIdsPool = []
 var spareImageIds = []
 var usedImageIds = []
 let columns = 2
+let rowsPerLoad = 8
+let imageLoadCount = columns * rowsPerLoad
+
+$('#images-container').on('scroll', (evt) => {
+    let scrolled = $(evt.currentTarget)
+    let scrolledToTopPx = scrolled.scrollTop()
+    let scrolledToBotPx = scrolledToTopPx + scrolled.height()
+    let scrollableHeight = scrolled[0].scrollHeight
+    let loadThreshold = 1000 //pixels
+    if(scrolledToBotPx >= scrollableHeight - loadThreshold) {
+        loadImages(imageLoadCount)
+    }
+})
 
 $('#submit-tags-list').on('click', () => {
     // build tags string
@@ -25,16 +38,11 @@ $('#submit-tags-list').on('click', () => {
             imageIdsPool = res.file_ids
             spareImageIds = imageIdsPool.slice(0)
             usedImageIds = []
-            clearImages()
             
-            loadImages(2 * 2)
+            loadImages(imageLoadCount)
         }
     )
 })
-
-let clearImages = () => {
-
-}
 
 let loadImages = (numLoads) => {
     if (numLoads == 0) {
