@@ -23,11 +23,11 @@ $('#submit-tags-list').on('click', () => {
         (res) => {
             //
             imageIdsPool = res.file_ids
-            spareImageIds = imageIdsPool
+            spareImageIds = imageIdsPool.slice(0)
             usedImageIds = []
             clearImages()
             
-            loadImages(2 * 5)
+            loadImages(2 * 2)
         }
     )
 })
@@ -54,7 +54,7 @@ let loadImages = (numLoads) => {
 
     // get next unused image id
     if (spareImageIds.length == 0) {
-        spareImageIds = imageIdsPool
+        spareImageIds = imageIdsPool.slice(0)
     }
     // remove from unused array
     let nextId = spareImageIds.pop()
