@@ -37,6 +37,7 @@ $('#submit-tags-list').on('click', () => {
             //
             imageIdsPool = res.file_ids
             spareImageIds = imageIdsPool.slice(0)
+            shuffleArray(spareImageIds)
             usedImageIds = []
             
             loadImages(imageLoadCount)
@@ -63,6 +64,7 @@ let loadImages = (numLoads) => {
     // get next unused image id
     if (spareImageIds.length == 0) {
         spareImageIds = imageIdsPool.slice(0)
+        shuffleArray(spareImageIds)
     }
     // remove from unused array
     let nextId = spareImageIds.pop()
@@ -136,3 +138,15 @@ $(window).on('wheel', (evt) => {
         }
     }
 })
+
+
+function shuffleArray (arr) {
+    var j, x, index;
+    for (index = arr.length - 1; index > 0; index--) {
+        j = Math.floor(Math.random() * (index + 1));
+        x = arr[index];
+        arr[index] = arr[j];
+        arr[j] = x;
+    }
+    return arr;
+}
