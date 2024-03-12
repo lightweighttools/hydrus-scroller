@@ -41,13 +41,15 @@ let loadImage = () => {
     var shortestCol = $(imageCols[0])
 
     imageCols.each((index, elem) => {
-        let colHeight = 0
-        
-        $(elem).height()
-
-        
-
-        if (colHeight < shortestCol.height()) {
+        console.log('colHeight')
+        let colHeight = getTotalColHeight($(elem))
+        // let shortestColHeight = getTotalColHeight(shortestCol)
+        // console.log('colHeight')
+        // console.log(colHeight)
+        // console.log('shortestColHeight')
+        // console.log(shortestColHeight)
+        console.log('shortest col height')
+        if (colHeight < getTotalColHeight(shortestCol)) {
             shortestCol = $(elem)
         }
     })
@@ -62,6 +64,16 @@ let loadImage = () => {
 
     // append picture to column
     shortestCol.append('<img src="http://localhost:45869/get_files/file?file_id=' + nextId + '&Hydrus-Client-API-Access-Key=567cfb76f9da116b8cf2ed112d6cc508e6fdf6b6a723656aa31d620847c42376">')
+}
+
+let getTotalColHeight = (column) => {
+    var totalColHeight = 0
+    let colChildren = column.children()
+    colChildren.each((index, elem) => {
+        totalColHeight += $(elem).height()
+    })
+    console.log(totalColHeight)
+    return totalColHeight
 }
 
 

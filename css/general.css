@@ -1,3 +1,11 @@
+body {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+}
+
 .horizontal-grid {
     display: flex;
 }
@@ -16,6 +24,11 @@
 
 #tags-list {
     width: 100%
+}
+
+#images-container {
+    flex: 1 1 auto;
+    overflow: auto;
 }
 
 #images-container img {
