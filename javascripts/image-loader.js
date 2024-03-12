@@ -132,7 +132,7 @@ $(window).on('wheel', (evt) => {
             setTimeout(() => {
                 scrollCounter = $('#images-container').scrollTop()
                 startScrolling()
-            }, 500)
+            }, 200)
         }
     }
 })
