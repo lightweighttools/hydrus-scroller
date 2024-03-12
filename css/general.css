@@ -1,3 +1,17 @@
-strong {
-    color: red;
+.horizontal-grid {
+    display: flex;
+}
+
+.horizontal-grid .stretch-column {
+    flex: 1 1;
+}
+
+.horizontal-grid .shrink-column {
+    flex: 0 1 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#tag-list {
+    width: 100%
 }
